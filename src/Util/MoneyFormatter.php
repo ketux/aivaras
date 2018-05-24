@@ -12,6 +12,11 @@ namespace App\Util;
 
 //use App\Util\NumberFormatter;
 
+/**
+ * Class MoneyFormatter
+ * @param NumberFormatter $numberFormatter
+ * @package App\Util
+ */
 class MoneyFormatter
 {
 
@@ -21,22 +26,20 @@ class MoneyFormatter
     private $numberFormatter;
 
 
-  // public function __construct(NumberFormatter $numberFormatter)
-  //  {
-  //      $this->numberFormatter = $numberFormatter;
-  //  }
-
-    public function formatEur ($number) {
-
-       $euro = NumberFormatter::class;
-       $euro = $number . " €";
-       return $euro;
+    public function __construct(NumberFormatter $numberFormatter)
+    {
+        $this->numberFormatter = $numberFormatter;
     }
 
-    public function formatUsd ($number) {
 
-        $usd = NumberFormatter::class;
-        $usd = "$ " . $number;
-        return $usd;
+    public function formatEur($number)
+    {
+        return $this->numberFormatter->convert($number) . ' €';
+    }
+
+
+    public function formatUsd($number)
+    {
+        return '$' . $this->numberFormatter->convert($number);
     }
 }
